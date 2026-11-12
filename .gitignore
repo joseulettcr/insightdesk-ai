@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+backend/.venv/
+.venv/
+
+# Base de datos local
+*.db
+*.sqlite
+*.sqlite3
+
+# Variables de entorno y secretos
+.env
+.env.*
+!.env.example
+
+# Node / Vite
+node_modules/
+frontend/dist/
+
+# Sistema
+.DS_Store
