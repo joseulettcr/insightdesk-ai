@@ -10,6 +10,14 @@ from app.models import Base
 from app.seed import seed_demo_data
 
 
+@pytest.fixture(autouse=True)
+def log_aislado(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Path:
+    """Evita que las pruebas escriban errores simulados en el log.md real."""
+    ruta = tmp_path / "log.md"
+    monkeypatch.setenv("INSIGHTDESK_LOG_PATH", str(ruta))
+    return ruta
+
+
 @pytest.fixture
 def database_url(tmp_path: Path) -> str:
     return f"sqlite:///{tmp_path / 'test.db'}"

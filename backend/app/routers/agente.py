@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 
 from app.agente.errores import AgenteError
 from app.agente.herramientas import construir_herramientas
+from app.agente.registro import registrar
 from app.agente.servicio import responder
 from app.config import GEMINI_MODEL
 from app.schemas import ChatRequest, ChatResponse
@@ -15,6 +16,7 @@ router = APIRouter(prefix="/api/agente", tags=["agente"])
 def chat(datos: ChatRequest, request: Request, session: Session = Depends(get_session)):
     cliente = request.app.state.cliente_gemini
     if cliente is None:
+        registrar(503, "No configurado", "Falta GEMINI_API_KEY en el servidor.")
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail="El asistente no está configurado en el servidor.",

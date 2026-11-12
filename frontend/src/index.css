@@ -79,6 +79,31 @@ p {
   padding: 20px clamp(16px, 4vw, 40px);
   border-bottom: 1px solid var(--borde);
   background: var(--superficie);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.boton-tema {
+  padding: 8px 14px;
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  background: var(--superficie-suave);
+  color: var(--texto);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.boton-tema:hover {
+  border-color: var(--acento);
+}
+
+.boton-tema:focus-visible {
+  outline: 2px solid var(--acento);
+  outline-offset: 2px;
 }
 
 .cabecera h1 {
@@ -169,6 +194,37 @@ p {
 
 .panel__cabecera h2 {
   font-size: 1rem;
+}
+
+.panel__asa {
+  cursor: grab;
+  user-select: none;
+  gap: 10px;
+}
+
+.panel__agarre {
+  color: var(--texto-suave);
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.panel__asa h2 {
+  flex: 1;
+}
+
+/* Columnas con altura mínima: pueden recibir paneles aunque estén vacías. */
+.fila-dos,
+.lateral {
+  min-height: 120px;
+}
+
+.panel__asa:active {
+  cursor: grabbing;
+}
+
+.panel--arrastrando {
+  opacity: 0.45;
+  border-style: dashed;
 }
 
 .grafico {
